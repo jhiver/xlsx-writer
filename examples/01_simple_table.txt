@@ -1,0 +1,42 @@
+# Simple table with headers and data
+# Usage: xlsx-writer simple_table.xlsx < examples/01_simple_table.txt
+
+ADD_WORKSHEET Employees
+
+# Set column widths
+SETCOL A:A 25
+SETCOL B:B 15
+SETCOL C:C 12
+SETCOL D:D 18
+
+# Headers
+TEXT .bold:1 .bg_color:navy .color:white .border:1 A1 Name
+TEXT .bold:1 .bg_color:navy .color:white .border:1 B1 Department
+TEXT .bold:1 .bg_color:navy .color:white .border:1 C1 Salary
+TEXT .bold:1 .bg_color:navy .color:white .border:1 D1 Start Date
+
+# Data rows
+TEXT A2 Alice Johnson
+TEXT B2 Engineering
+NUM .num_format:$#,##0 C2 95000
+TEXT D2 2022-03-15
+
+TEXT A3 Bob Smith
+TEXT B3 Marketing
+NUM .num_format:$#,##0 C3 78000
+TEXT D3 2021-08-01
+
+TEXT A4 Carol Williams
+TEXT B4 Engineering
+NUM .num_format:$#,##0 C4 102000
+TEXT D4 2020-01-10
+
+TEXT A5 David Brown
+TEXT B5 Sales
+NUM .num_format:$#,##0 C5 85000
+TEXT D5 2023-06-20
+
+TEXT A6 Eve Davis
+TEXT B6 Marketing
+NUM .num_format:$#,##0 C6 72000
+TEXT D6 2023-11-01

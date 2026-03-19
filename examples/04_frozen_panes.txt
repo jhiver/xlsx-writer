@@ -1,0 +1,139 @@
+# Frozen panes and autofilter for a scrollable data table
+# Usage: xlsx-writer frozen_panes.xlsx < examples/04_frozen_panes.txt
+
+ADD_WORKSHEET Inventory
+TAB_COLOR blue
+
+SETCOL A:A 10
+SETCOL B:B 25
+SETCOL C:C 15
+SETCOL D:D 12
+SETCOL E:E 12
+
+# Freeze the top row so headers stay visible when scrolling
+FREEZE A2
+
+# Add autofilter to the header row range
+AUTOFILTER A1:E20
+
+# Headers
+TEXT .bold:1 .bg_color:#2F5496 .color:white .border:1 A1 SKU
+TEXT .bold:1 .bg_color:#2F5496 .color:white .border:1 B1 Product Name
+TEXT .bold:1 .bg_color:#2F5496 .color:white .border:1 C1 Category
+TEXT .bold:1 .bg_color:#2F5496 .color:white .border:1 D1 Price
+TEXT .bold:1 .bg_color:#2F5496 .color:white .border:1 E1 Stock
+
+# Data — enough rows to demonstrate scrolling
+TEXT A2 WDG-001
+TEXT B2 Widget Pro Max
+TEXT C2 Electronics
+NUM .num_format:$#,##0.00 D2 299.99
+NUM E2 45
+
+TEXT A3 WDG-002
+TEXT B3 Widget Lite
+TEXT C3 Electronics
+NUM .num_format:$#,##0.00 D3 149.99
+NUM E3 120
+
+TEXT A4 WDG-003
+TEXT B4 Widget Mini
+TEXT C4 Electronics
+NUM .num_format:$#,##0.00 D4 49.99
+NUM E4 300
+
+TEXT A5 ACC-001
+TEXT B5 Premium Case
+TEXT C5 Accessories
+NUM .num_format:$#,##0.00 D5 29.99
+NUM E5 200
+
+TEXT A6 ACC-002
+TEXT B6 Charging Cable
+TEXT C6 Accessories
+NUM .num_format:$#,##0.00 D6 19.99
+NUM E6 500
+
+TEXT A7 ACC-003
+TEXT B7 Screen Protector
+TEXT C7 Accessories
+NUM .num_format:$#,##0.00 D7 9.99
+NUM E7 1000
+
+TEXT A8 SRV-001
+TEXT B8 Extended Warranty
+TEXT C8 Services
+NUM .num_format:$#,##0.00 D8 79.99
+NUM E8 0
+
+TEXT A9 SRV-002
+TEXT B9 Setup Service
+TEXT C9 Services
+NUM .num_format:$#,##0.00 D9 49.99
+NUM E9 0
+
+TEXT A10 WDG-004
+TEXT B10 Widget Ultra
+TEXT C10 Electronics
+NUM .num_format:$#,##0.00 D10 499.99
+NUM E10 25
+
+TEXT A11 ACC-004
+TEXT B11 Wireless Charger
+TEXT C11 Accessories
+NUM .num_format:$#,##0.00 D11 39.99
+NUM E11 150
+
+TEXT A12 WDG-005
+TEXT B12 Widget Nano
+TEXT C12 Electronics
+NUM .num_format:$#,##0.00 D12 29.99
+NUM E12 800
+
+TEXT A13 ACC-005
+TEXT B13 Travel Pouch
+TEXT C13 Accessories
+NUM .num_format:$#,##0.00 D13 14.99
+NUM E13 350
+
+TEXT A14 WDG-006
+TEXT B14 Widget Home Hub
+TEXT C14 Electronics
+NUM .num_format:$#,##0.00 D14 199.99
+NUM E14 60
+
+TEXT A15 SRV-003
+TEXT B15 Premium Support
+TEXT C15 Services
+NUM .num_format:$#,##0.00 D15 99.99
+NUM E15 0
+
+TEXT A16 ACC-006
+TEXT B16 Replacement Battery
+TEXT C16 Accessories
+NUM .num_format:$#,##0.00 D16 24.99
+NUM E16 175
+
+TEXT A17 WDG-007
+TEXT B17 Widget Outdoor
+TEXT C17 Electronics
+NUM .num_format:$#,##0.00 D17 349.99
+NUM E17 35
+
+TEXT A18 ACC-007
+TEXT B18 Rugged Case
+TEXT C18 Accessories
+NUM .num_format:$#,##0.00 D18 44.99
+NUM E18 90
+
+TEXT A19 WDG-008
+TEXT B19 Widget Kids
+TEXT C19 Electronics
+NUM .num_format:$#,##0.00 D19 99.99
+NUM E19 200
+
+TEXT A20 SRV-004
+TEXT B20 Data Migration
+TEXT C20 Services
+NUM .num_format:$#,##0.00 D20 149.99
+NUM E20 0

@@ -1,0 +1,73 @@
+# Page setup for printing: landscape, margins, headers, footers
+# Usage: xlsx-writer page_setup.xlsx < examples/09_page_setup.txt
+
+ADD_WORKSHEET Print Ready
+
+# Page layout
+PAGE_SETUP orientation landscape
+PAGE_SETUP paper_size 1
+PAGE_SETUP margins 0.5 0.5 0.75 0.75 0.3 0.3
+PAGE_SETUP print_scale 90
+PAGE_SETUP print_gridlines 1
+
+# Header: centered title, right-aligned date
+PAGE_SETUP header &LConfidential&CMonthly Sales Report&R&D
+
+# Footer: left page number, right filename
+PAGE_SETUP footer &LPage &P of &N&R&F
+
+# Print area and repeat rows
+PAGE_SETUP print_area A1:F20
+PAGE_SETUP repeat_rows 1 1
+
+# Center on page
+PAGE_SETUP center_horizontally 1
+
+# Column widths
+SETCOL A:A 20
+SETCOL B:F 14
+
+# Headers
+TEXT .bold:1 .bg_color:#4472C4 .color:white .border:1 A1 Region
+TEXT .bold:1 .bg_color:#4472C4 .color:white .border:1 B1 Jan
+TEXT .bold:1 .bg_color:#4472C4 .color:white .border:1 C1 Feb
+TEXT .bold:1 .bg_color:#4472C4 .color:white .border:1 D1 Mar
+TEXT .bold:1 .bg_color:#4472C4 .color:white .border:1 E1 Q1 Total
+TEXT .bold:1 .bg_color:#4472C4 .color:white .border:1 F1 Avg
+
+# Data
+TEXT .border:1 A2 North America
+NUM .border:1 .num_format:#,##0 B2 45200
+NUM .border:1 .num_format:#,##0 C2 48300
+NUM .border:1 .num_format:#,##0 D2 51100
+FORMULA .border:1 .bold:1 .num_format:#,##0 E2 =SUM(B2:D2)
+FORMULA .border:1 .num_format:#,##0 F2 =AVERAGE(B2:D2)
+
+TEXT .border:1 A3 Europe
+NUM .border:1 .num_format:#,##0 B3 32100
+NUM .border:1 .num_format:#,##0 C3 33800
+NUM .border:1 .num_format:#,##0 D3 35200
+FORMULA .border:1 .bold:1 .num_format:#,##0 E3 =SUM(B3:D3)
+FORMULA .border:1 .num_format:#,##0 F3 =AVERAGE(B3:D3)
+
+TEXT .border:1 A4 Asia Pacific
+NUM .border:1 .num_format:#,##0 B4 28500
+NUM .border:1 .num_format:#,##0 C4 30100
+NUM .border:1 .num_format:#,##0 D4 31800
+FORMULA .border:1 .bold:1 .num_format:#,##0 E4 =SUM(B4:D4)
+FORMULA .border:1 .num_format:#,##0 F4 =AVERAGE(B4:D4)
+
+TEXT .border:1 A5 Latin America
+NUM .border:1 .num_format:#,##0 B5 12300
+NUM .border:1 .num_format:#,##0 C5 13100
+NUM .border:1 .num_format:#,##0 D5 14200
+FORMULA .border:1 .bold:1 .num_format:#,##0 E5 =SUM(B5:D5)
+FORMULA .border:1 .num_format:#,##0 F5 =AVERAGE(B5:D5)
+
+# Totals
+TEXT .bold:1 .border:2 .bg_color:#E8E8E8 A7 Grand Total
+FORMULA .bold:1 .border:2 .bg_color:#E8E8E8 .num_format:#,##0 B7 =SUM(B2:B5)
+FORMULA .bold:1 .border:2 .bg_color:#E8E8E8 .num_format:#,##0 C7 =SUM(C2:C5)
+FORMULA .bold:1 .border:2 .bg_color:#E8E8E8 .num_format:#,##0 D7 =SUM(D2:D5)
+FORMULA .bold:1 .border:2 .bg_color:#E8E8E8 .num_format:#,##0 E7 =SUM(E2:E5)
+FORMULA .bold:1 .border:2 .bg_color:#E8E8E8 .num_format:#,##0 F7 =AVERAGE(B7:D7)

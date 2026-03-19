@@ -1,0 +1,75 @@
+# Data validation: dropdown lists, number ranges, text length limits
+# Usage: xlsx-writer data_validation.xlsx < examples/08_data_validation.txt
+
+ADD_WORKSHEET Order Form
+
+SETCOL A:A 20
+SETCOL B:B 25
+SETCOL C:C 15
+SETCOL D:D 15
+SETCOL E:E 15
+
+# Headers
+MERGE .bold:1 .font_size:14 .align:center .bg_color:#4472C4 .color:white A1:E1 Order Entry Form
+SETROW 1 30
+
+TEXT .bold:1 .bg_color:#D6E4F0 .border:1 A3 Field
+TEXT .bold:1 .bg_color:#D6E4F0 .border:1 B3 Value
+TEXT .bold:1 .bg_color:#D6E4F0 .border:1 C3 Constraints
+
+# Dropdown list for product selection
+TEXT .border:1 A4 Product
+BLANK .border:1 B4
+TEXT .italic:1 .color:gray C4 Select from list
+DATA_VALIDATION B4:B4 list Widget Pro,Widget Lite,Widget Ultra,Widget Mini
+
+# Integer validation for quantity
+TEXT .border:1 A5 Quantity
+BLANK .border:1 B5
+TEXT .italic:1 .color:gray C5 1-1000
+DATA_VALIDATION B5:B5 whole_number between 1 1000
+
+# Decimal validation for discount
+TEXT .border:1 A6 Discount %
+BLANK .border:1 B6
+TEXT .italic:1 .color:gray C6 0.0 - 50.0
+DATA_VALIDATION B6:B6 decimal between 0.0 50.0
+
+# Text length validation for notes
+TEXT .border:1 A7 Notes
+BLANK .border:1 B7
+TEXT .italic:1 .color:gray C7 Max 200 chars
+DATA_VALIDATION B7:B7 text_length less_than_or_equal 200
+
+# Dropdown for priority
+TEXT .border:1 A8 Priority
+BLANK .border:1 B8
+TEXT .italic:1 .color:gray C8 Select priority
+DATA_VALIDATION B8:B8 list Low,Medium,High,Critical
+
+# Dropdown for shipping method
+TEXT .border:1 A9 Shipping
+BLANK .border:1 B9
+TEXT .italic:1 .color:gray C9 Select shipping
+DATA_VALIDATION B9:B9 list Standard,Express,Overnight,International
+
+# --- Bulk validation sheet ---
+ADD_WORKSHEET Data Entry
+
+SETCOL A:A 15
+SETCOL B:B 15
+SETCOL C:C 20
+SETCOL D:D 15
+
+TEXT .bold:1 A1 Score
+TEXT .bold:1 B1 Rating
+TEXT .bold:1 C1 Status
+TEXT .bold:1 D1 Amount
+
+FREEZE A2
+
+# Validate entire columns
+DATA_VALIDATION A2:A100 whole_number between 0 100
+DATA_VALIDATION B2:B100 decimal between 1.0 5.0
+DATA_VALIDATION C2:C100 list Pass,Fail,Pending,Review
+DATA_VALIDATION D2:D100 decimal greater_than 0.0

@@ -1,0 +1,86 @@
+# Excel Table objects with banded rows, auto-headers, built-in filter
+# Usage: xlsx-writer table_object.xlsx < examples/06_table_object.txt
+
+ADD_WORKSHEET Product Catalog
+
+SETCOL A:A 10
+SETCOL B:B 25
+SETCOL C:C 15
+SETCOL D:D 12
+SETCOL E:E 12
+
+# Write header row and data first (Table uses existing cell content)
+TEXT A1 ID
+TEXT B1 Product
+TEXT C1 Category
+TEXT D1 Price
+TEXT E1 Rating
+
+TEXT A2 1001
+TEXT B2 Laptop Pro 15
+TEXT C2 Electronics
+NUM D2 1299.99
+NUM E2 4.5
+
+TEXT A3 1002
+TEXT B3 Wireless Mouse
+TEXT C3 Accessories
+NUM D3 29.99
+NUM E3 4.2
+
+TEXT A4 1003
+TEXT B4 USB-C Hub
+TEXT C4 Accessories
+NUM D4 49.99
+NUM E4 4.7
+
+TEXT A5 1004
+TEXT B5 Monitor 27in
+TEXT C5 Electronics
+NUM D5 399.99
+NUM E5 4.3
+
+TEXT A6 1005
+TEXT B6 Keyboard Mech
+TEXT C6 Accessories
+NUM D6 89.99
+NUM E6 4.8
+
+TEXT A7 1006
+TEXT B7 Webcam HD
+TEXT C7 Electronics
+NUM D7 69.99
+NUM E7 3.9
+
+TEXT A8 1007
+TEXT B8 Desk Lamp
+TEXT C8 Furniture
+NUM D8 34.99
+NUM E8 4.1
+
+TEXT A9 1008
+TEXT B9 Standing Desk
+TEXT C9 Furniture
+NUM D9 549.99
+NUM E9 4.6
+
+# Apply Table object — adds banding, filter dropdowns, and table styling
+TABLE A1:E9 ProductCatalog Medium10
+
+# Second sheet: minimal table with default style
+ADD_WORKSHEET Quick Table
+
+SETCOL A:A 15
+SETCOL B:B 15
+
+TEXT A1 Name
+TEXT B1 Score
+TEXT A2 Alice
+NUM B2 95
+TEXT A3 Bob
+NUM B3 87
+TEXT A4 Carol
+NUM B4 92
+
+# Table with auto-name and Light style
+TABLE A1:B4 _ Light6

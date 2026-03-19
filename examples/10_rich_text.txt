@@ -1,0 +1,33 @@
+# Rich text: mixed formatting within a single cell
+# Segments are separated by || and each segment is format|text
+# Formats use comma-separated key:value pairs; _ means default
+# Usage: xlsx-writer rich_text.xlsx < examples/10_rich_text.txt
+
+ADD_WORKSHEET Rich Text
+
+SETCOL A:A 50
+SETROW 1 25
+SETROW 2 25
+SETROW 3 25
+SETROW 4 25
+SETROW 5 25
+SETROW 7 25
+
+# Bold + normal in one cell
+RICH_TEXT A1 bold:1|Important: ||_|This document requires your attention.
+
+# Multiple colors
+RICH_TEXT A2 color:red|Red ||color:green|Green ||color:blue|Blue ||_|Normal
+
+# Mixed bold, italic, underline
+RICH_TEXT A3 bold:1|Name: ||_|John Smith  ||bold:1|Role: ||italic:1|Senior Engineer
+
+# With cell-level formatting (background + border)
+RICH_TEXT .bg_color:#FFFFCC .border:1 A4 bold:1,font_size:12|Status: ||color:green,bold:1|APPROVED ||_|on 2024-06-15
+
+# Styled disclaimer text
+RICH_TEXT A5 bold:1|Note: ||italic:1,color:gray|Prices are subject to change without notice. ||bold:1,color:red|Final sale items are non-refundable.
+
+# Section header
+TEXT .bold:1 .font_size:14 A7 Rich Text Examples
+RICH_TEXT A8 _|For support, email ||color:blue,underline:1|support@example.com ||_|or call ||bold:1|1-800-HELP

@@ -1,0 +1,10 @@
+[package]
+name = "xlsx-writer"
+version = "0.1.0"
+edition = "2021"
+description = "Generate formatted Excel spreadsheets from simple text commands piped via stdin"
+license = "MIT"
+
+[dependencies]
+rust_xlsxwriter = "0.79"
+anyhow = "1"

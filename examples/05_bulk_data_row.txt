@@ -1,0 +1,35 @@
+# ROW command for bulk data with tab-delimited values
+# Each ROW line writes an entire row at once with auto type detection
+# Usage: xlsx-writer bulk_data.xlsx < examples/05_bulk_data_row.txt
+
+ADD_WORKSHEET Sales Data
+TAB_COLOR green
+
+SETCOL A:A 12
+SETCOL B:B 20
+SETCOL C:C 12
+SETCOL D:D 14
+SETCOL E:E 14
+
+FREEZE A2
+
+# Header row using ROW (space-separated fallback since no tabs)
+ROW .bold:1 .bg_color:navy .color:white A1 Date Rep Region Units Revenue
+
+# Data rows — in a real pipeline these would be tab-delimited from SQL/CSV
+# Here we use space-separated for portability in a text file
+ROW A2 2024-01-15 Alice North 120 4800.00
+ROW A3 2024-01-22 Bob South 85 3400.00
+ROW A4 2024-02-01 Carol East 200 8000.00
+ROW A5 2024-02-10 Alice North 150 6000.00
+ROW A6 2024-02-18 David West 95 3800.00
+ROW A7 2024-03-01 Bob South 110 4400.00
+ROW A8 2024-03-15 Carol East 175 7000.00
+ROW A9 2024-03-22 David West 130 5200.00
+ROW A10 2024-04-01 Alice North 160 6400.00
+ROW A11 2024-04-15 Bob South 90 3600.00
+
+# Totals using formulas
+TEXT .bold:1 .border:2 A13 Totals
+FORMULA .bold:1 .border:2 D13 =SUM(D2:D11)
+FORMULA .bold:1 .border:2 .num_format:$#,##0.00 E13 =SUM(E2:E11)

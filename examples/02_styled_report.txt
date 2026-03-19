@@ -1,0 +1,52 @@
+# Styled quarterly report with merged header, named styles, borders
+# Usage: xlsx-writer styled_report.xlsx < examples/02_styled_report.txt
+
+SET_PROPERTY title Q4 2024 Sales Report
+SET_PROPERTY author Finance Department
+SET_PROPERTY company Acme Corp
+
+ADD_WORKSHEET Q4 Sales
+
+# Column widths
+SETCOL A:A 25
+SETCOL B:C 15
+SETCOL D:D 18
+
+# Row height for header
+SETROW 1 35
+
+# Merged title
+MERGE .bold:1 .font_size:18 .align:center .color:white .bg_color:#003366 A1:D1 Q4 2024 Sales Report
+
+# Column headers
+TEXT .bold:1 .bg_color:silver .border:1 .align:center A2 Product
+TEXT .bold:1 .bg_color:silver .border:1 .align:center B2 Units Sold
+TEXT .bold:1 .bg_color:silver .border:1 .align:center C2 Revenue
+TEXT .bold:1 .bg_color:silver .border:1 .align:center D2 % of Target
+
+# Data rows
+TEXT .border:1 A3 Widget Pro
+NUM .border:1 .align:center B3 1250
+NUM .border:1 .num_format:$#,##0 C3 62500
+NUM .border:1 .num_format:0.0% D3 1.04
+
+TEXT .border:1 A4 Widget Lite
+NUM .border:1 .align:center B4 3400
+NUM .border:1 .num_format:$#,##0 C4 51000
+NUM .border:1 .num_format:0.0% D4 0.85
+
+TEXT .border:1 A5 Widget Ultra
+NUM .border:1 .align:center B5 800
+NUM .border:1 .num_format:$#,##0 C5 96000
+NUM .border:1 .num_format:0.0% D5 1.20
+
+TEXT .border:1 A6 Widget Mini
+NUM .border:1 .align:center B6 5200
+NUM .border:1 .num_format:$#,##0 C6 26000
+NUM .border:1 .num_format:0.0% D6 0.92
+
+# Totals row
+TEXT .bold:1 .border:2 .bg_color:#E8E8E8 A7 Total
+NUM .bold:1 .border:2 .bg_color:#E8E8E8 .align:center B7 10650
+NUM .bold:1 .border:2 .bg_color:#E8E8E8 .num_format:$#,##0 C7 235500
+BLANK .bold:1 .border:2 .bg_color:#E8E8E8 D7

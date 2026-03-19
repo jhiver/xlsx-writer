@@ -1,0 +1,50 @@
+# Cell comments (notes) for annotations and documentation
+# Usage: xlsx-writer comments.xlsx < examples/12_comments.txt
+
+ADD_WORKSHEET Review Sheet
+
+SETCOL A:A 20
+SETCOL B:B 15
+SETCOL C:C 15
+SETCOL D:D 20
+
+TEXT .bold:1 .bg_color:#4472C4 .color:white A1 Item
+TEXT .bold:1 .bg_color:#4472C4 .color:white B1 Budget
+TEXT .bold:1 .bg_color:#4472C4 .color:white C1 Actual
+TEXT .bold:1 .bg_color:#4472C4 .color:white D1 Variance
+
+TEXT A2 Marketing
+NUM .num_format:$#,##0 B2 50000
+NUM .num_format:$#,##0 C2 62000
+FORMULA .num_format:$#,##0 D2 =C2-B2
+
+TEXT A3 Engineering
+NUM .num_format:$#,##0 B3 120000
+NUM .num_format:$#,##0 C3 115000
+FORMULA .num_format:$#,##0 D3 =C3-B3
+
+TEXT A4 Sales
+NUM .num_format:$#,##0 B4 80000
+NUM .num_format:$#,##0 C4 95000
+FORMULA .num_format:$#,##0 D4 =C4-B4
+
+TEXT A5 Operations
+NUM .num_format:$#,##0 B5 45000
+NUM .num_format:$#,##0 C5 43000
+FORMULA .num_format:$#,##0 D5 =C5-B5
+
+# Add comments explaining variances
+COMMENT C2 Includes $8K for Q4 product launch campaign — approved by VP Marketing
+COMMENT D2 Over budget due to unplanned launch event. Budget increase requested for next quarter.
+COMMENT C3 Came under budget due to delayed hiring — 2 positions still open
+COMMENT C4 Strong Q4 performance, exceeded targets by 18%
+COMMENT D4 Positive variance from commission payouts on exceeded targets
+COMMENT B5 Includes $10K contingency that was not used
+
+# Summary
+TEXT .bold:1 .border:2 A7 Total
+FORMULA .bold:1 .border:2 .num_format:$#,##0 B7 =SUM(B2:B5)
+FORMULA .bold:1 .border:2 .num_format:$#,##0 C7 =SUM(C2:C5)
+FORMULA .bold:1 .border:2 .num_format:$#,##0 D7 =SUM(D2:D5)
+
+COMMENT D7 Net variance is positive — overall spending within budget parameters

@@ -1,0 +1,97 @@
+# Sheet management: tab colors, hidden sheets, protection, named ranges
+# Usage: xlsx-writer sheet_mgmt.xlsx < examples/11_sheet_management.txt
+
+# --- Main dashboard sheet ---
+ADD_WORKSHEET Dashboard
+TAB_COLOR blue
+
+SETCOL A:A 25
+SETCOL B:B 20
+
+TEXT .bold:1 .font_size:16 A1 Company Dashboard
+TEXT A3 Total Revenue
+FORMULA .bold:1 .num_format:$#,##0 B3 =Data!B10
+
+TEXT A4 Total Units
+FORMULA .bold:1 B4 =Data!C10
+
+TEXT A6 Tax Rate
+FORMULA .num_format:0.0% B6 =TaxRate
+
+# --- Data sheet ---
+ADD_WORKSHEET Data
+TAB_COLOR green
+
+SETCOL A:A 20
+SETCOL B:B 15
+SETCOL C:C 12
+
+TEXT .bold:1 A1 Product
+TEXT .bold:1 B1 Revenue
+TEXT .bold:1 C1 Units
+
+TEXT A2 Widget A
+NUM B2 25000
+NUM C2 500
+TEXT A3 Widget B
+NUM B3 18000
+NUM C3 360
+TEXT A4 Widget C
+NUM B4 32000
+NUM C4 640
+TEXT A5 Widget D
+NUM B5 12000
+NUM C5 240
+TEXT A6 Widget E
+NUM B6 45000
+NUM C6 900
+TEXT A7 Widget F
+NUM B7 28000
+NUM C7 560
+TEXT A8 Widget G
+NUM B8 15000
+NUM C8 300
+TEXT A9 Widget H
+NUM B9 38000
+NUM C9 760
+
+TEXT .bold:1 .border:2 A10 Total
+FORMULA .bold:1 .border:2 .num_format:$#,##0 B10 =SUM(B2:B9)
+FORMULA .bold:1 .border:2 C10 =SUM(C2:C9)
+
+# --- Config sheet (hidden) ---
+ADD_WORKSHEET Config
+TAB_COLOR red
+HIDE_SHEET
+
+TEXT A1 Tax Rate
+NUM .num_format:0.0% B1 0.085
+
+TEXT A2 Discount Threshold
+NUM B2 10000
+
+TEXT A3 Report Version
+TEXT B3 2.1
+
+# --- Protected sheet ---
+ADD_WORKSHEET Protected Data
+TAB_COLOR orange
+PROTECT_SHEET
+
+SETCOL A:A 20
+SETCOL B:B 15
+
+TEXT .bold:1 A1 Field
+TEXT .bold:1 B1 Value
+
+TEXT A2 Base Price
+NUM .num_format:$#,##0.00 B2 99.99
+TEXT A3 Tax Rate
+NUM .num_format:0.0% B3 0.085
+TEXT A4 Shipping Fee
+NUM .num_format:$#,##0.00 B4 5.99
+
+# --- Define named ranges ---
+DEFINE_NAME TaxRate Config!$B$1
+DEFINE_NAME DiscountThreshold Config!$B$2
+DEFINE_NAME ProductData Data!$A$1:$C$10

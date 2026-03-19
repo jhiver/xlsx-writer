@@ -1,0 +1,182 @@
+# Conditional formatting: cell rules, color scales, data bars, duplicates
+# Usage: xlsx-writer conditional.xlsx < examples/07_conditional_formatting.txt
+
+ADD_WORKSHEET Cell Rules
+
+SETCOL A:A 20
+SETCOL B:B 12
+
+TEXT .bold:1 A1 Student
+TEXT .bold:1 B1 Score
+
+TEXT A2 Alice
+NUM B2 95
+TEXT A3 Bob
+NUM B3 72
+TEXT A4 Carol
+NUM B4 88
+TEXT A5 David
+NUM B5 45
+TEXT A6 Eve
+NUM B6 91
+TEXT A7 Frank
+NUM B7 63
+TEXT A8 Grace
+NUM B8 78
+TEXT A9 Henry
+NUM B9 55
+TEXT A10 Iris
+NUM B10 99
+
+# Highlight scores above 90 in green
+CONDITIONAL .bg_color:#C6EFCE .color:#006100 B2:B10 cell greater_than 90
+
+# Highlight scores below 60 in red
+CONDITIONAL .bg_color:#FFC7CE .color:#9C0006 B2:B10 cell less_than 60
+
+# Highlight scores between 60 and 75 in yellow
+CONDITIONAL .bg_color:#FFEB9C .color:#9C6500 B2:B10 cell between 60 75
+
+# --- Color Scales sheet ---
+ADD_WORKSHEET Color Scales
+
+SETCOL A:A 15
+SETCOL B:B 15
+SETCOL C:C 15
+
+TEXT .bold:1 A1 2-Color
+TEXT .bold:1 B1 3-Color
+TEXT .bold:1 C1 Custom
+
+NUM A2 10
+NUM A3 20
+NUM A4 30
+NUM A5 40
+NUM A6 50
+NUM A7 60
+NUM A8 70
+NUM A9 80
+NUM A10 90
+NUM A11 100
+
+NUM B2 10
+NUM B3 20
+NUM B4 30
+NUM B5 40
+NUM B6 50
+NUM B7 60
+NUM B8 70
+NUM B9 80
+NUM B10 90
+NUM B11 100
+
+NUM C2 10
+NUM C3 20
+NUM C4 30
+NUM C5 40
+NUM C6 50
+NUM C7 60
+NUM C8 70
+NUM C9 80
+NUM C10 90
+NUM C11 100
+
+# Default 2-color scale (white→green)
+CONDITIONAL A2:A11 2_color_scale
+
+# Default 3-color scale (red→yellow→green)
+CONDITIONAL B2:B11 3_color_scale
+
+# Custom 3-color scale (red→white→blue)
+CONDITIONAL C2:C11 3_color_scale red white blue
+
+# --- Data Bars sheet ---
+ADD_WORKSHEET Data Bars
+
+SETCOL A:A 15
+SETCOL B:B 15
+
+TEXT .bold:1 A1 Default
+TEXT .bold:1 B1 Custom
+
+NUM A2 15
+NUM A3 35
+NUM A4 50
+NUM A5 75
+NUM A6 90
+NUM A7 25
+NUM A8 60
+NUM A9 80
+NUM A10 100
+
+NUM B2 15
+NUM B3 35
+NUM B4 50
+NUM B5 75
+NUM B6 90
+NUM B7 25
+NUM B8 60
+NUM B9 80
+NUM B10 100
+
+# Default data bars
+CONDITIONAL A2:A10 data_bar
+
+# Custom colored data bars
+CONDITIONAL B2:B10 data_bar orange
+
+# --- Duplicates sheet ---
+ADD_WORKSHEET Duplicates
+
+SETCOL A:A 20
+
+TEXT .bold:1 A1 Email
+
+TEXT A2 alice@example.com
+TEXT A3 bob@example.com
+TEXT A4 carol@example.com
+TEXT A5 alice@example.com
+TEXT A6 david@example.com
+TEXT A7 bob@example.com
+TEXT A8 eve@example.com
+TEXT A9 frank@example.com
+TEXT A10 carol@example.com
+
+# Highlight duplicates in red
+CONDITIONAL .bg_color:#FFC7CE A2:A10 duplicate
+
+# --- Top/Bottom sheet ---
+ADD_WORKSHEET Top Bottom
+
+SETCOL A:A 12
+SETCOL B:B 12
+
+TEXT .bold:1 A1 Sales Rep
+TEXT .bold:1 B1 Revenue
+
+TEXT A2 Adams
+NUM B2 125000
+TEXT A3 Baker
+NUM B3 98000
+TEXT A4 Clark
+NUM B4 156000
+TEXT A5 Davis
+NUM B5 87000
+TEXT A6 Evans
+NUM B6 142000
+TEXT A7 Foster
+NUM B7 110000
+TEXT A8 Grant
+NUM B8 175000
+TEXT A9 Harris
+NUM B9 93000
+TEXT A10 Irving
+NUM B10 131000
+TEXT A11 Jones
+NUM B11 168000
+
+# Top 3 in green
+CONDITIONAL .bg_color:#C6EFCE .bold:1 B2:B11 top 3
+
+# Bottom 3 in red
+CONDITIONAL .bg_color:#FFC7CE B2:B11 bottom 3

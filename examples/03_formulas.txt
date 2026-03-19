@@ -1,0 +1,73 @@
+# Formulas: SUM, AVERAGE, MIN, MAX, IF, VLOOKUP-style references
+# Usage: xlsx-writer formulas.xlsx < examples/03_formulas.txt
+
+ADD_WORKSHEET Budget
+
+SETCOL A:A 20
+SETCOL B:E 15
+
+# Headers
+TEXT .bold:1 .bg_color:#4472C4 .color:white A1 Category
+TEXT .bold:1 .bg_color:#4472C4 .color:white B1 Q1
+TEXT .bold:1 .bg_color:#4472C4 .color:white C1 Q2
+TEXT .bold:1 .bg_color:#4472C4 .color:white D1 Q3
+TEXT .bold:1 .bg_color:#4472C4 .color:white E1 Q4
+
+# Data
+TEXT A2 Marketing
+NUM B2 12000
+NUM C2 15000
+NUM D2 13500
+NUM E2 18000
+
+TEXT A3 Engineering
+NUM B3 45000
+NUM C3 47000
+NUM D3 46000
+NUM E3 50000
+
+TEXT A4 Sales
+NUM B4 8000
+NUM C4 9500
+NUM D4 11000
+NUM E4 12500
+
+TEXT A5 Operations
+NUM B5 22000
+NUM C5 21000
+NUM D5 23000
+NUM E5 24000
+
+# Row totals (Sum across quarters)
+SETCOL F:F 15
+TEXT .bold:1 .bg_color:#4472C4 .color:white F1 Annual Total
+FORMULA .bold:1 .num_format:$#,##0 F2 =SUM(B2:E2)
+FORMULA .bold:1 .num_format:$#,##0 F3 =SUM(B3:E3)
+FORMULA .bold:1 .num_format:$#,##0 F4 =SUM(B4:E4)
+FORMULA .bold:1 .num_format:$#,##0 F5 =SUM(B5:E5)
+
+# Column totals
+TEXT .bold:1 .border:2 A7 Quarter Total
+FORMULA .bold:1 .border:2 .num_format:$#,##0 B7 =SUM(B2:B5)
+FORMULA .bold:1 .border:2 .num_format:$#,##0 C7 =SUM(C2:C5)
+FORMULA .bold:1 .border:2 .num_format:$#,##0 D7 =SUM(D2:D5)
+FORMULA .bold:1 .border:2 .num_format:$#,##0 E7 =SUM(E2:E5)
+FORMULA .bold:1 .border:2 .num_format:$#,##0 F7 =SUM(F2:F5)
+
+# Statistics
+TEXT .bold:1 A9 Statistics
+TEXT A10 Average per Quarter
+FORMULA .num_format:$#,##0.00 B10 =AVERAGE(B7:E7)
+
+TEXT A11 Highest Quarter
+FORMULA .num_format:$#,##0 B11 =MAX(B7:E7)
+
+TEXT A12 Lowest Quarter
+FORMULA .num_format:$#,##0 B12 =MIN(B7:E7)
+
+TEXT A14 Growth (Q1→Q4)
+FORMULA .num_format:0.0% B14 =(E7-B7)/B7
+
+# Conditional formula
+TEXT A16 Status
+FORMULA B16 =IF(B14>0.1,"Strong Growth","Moderate")
